@@ -1,0 +1,16 @@
+# IDEA
+.idea/
+*.iml
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.json
+
+# 本地缓存
+.astock_cache/
