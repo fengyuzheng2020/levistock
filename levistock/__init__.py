@@ -82,6 +82,7 @@ from levistock.news.news_cls import (
 # ── 工具 utils ───────────────────────────────────────────
 from levistock.utils.trade_day import (
     is_trade_day,
+    get_trade_days,
 )
 
 __version__ = "0.1.0"
@@ -126,4 +127,5 @@ __all__ = [
     "news_telegraph_cls",
     # 工具
     "is_trade_day",
+    "get_trade_days",
 ]
