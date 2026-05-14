@@ -18,6 +18,9 @@ from levistock.market.market_wind_cls import (
     market_wind_stocks_cls,
     market_mainline_cls,
 )
+from levistock.market.market_emotion_kph import (
+    market_emotion_kph,
+)
 
 # ── 板块 sector ──────────────────────────────────────────
 from levistock.sector.sector_em import (
@@ -28,18 +31,25 @@ from levistock.sector.sector_em import (
 from levistock.sector.sector_cls import (
     sector_industry_cls,
 )
-from levistock.sector.sector_kph import (
+from levistock.sector.sector_ranking_kph import (
     sector_ranking_kph,
-    sector_ranking_stocks_kph,
+    SECTOR_SELECTED,
+    SECTOR_INDUSTRY,
+    SECTOR_REGION,
+)
+from levistock.sector.sector_stocks_his_kph import (
+    sector_stocks_his_kph,
 )
 
 # ── 股票 stock ───────────────────────────────────────────
 from levistock.stock.stock_em import (
     stocks_all_em,
-    stocks_em
+    stocks_em,
 )
-from levistock.stock.stock_zt_em import (
+from levistock.stock.stock_ztdt_em import (
     stock_zt_pool_em,
+    stock_dt_pool_em,
+    stock_yesterday_zt_em,
 )
 from levistock.stock.stock_zt_cls import (
     stock_zt_pool_cls,
@@ -57,6 +67,11 @@ from levistock.stock.stock_kline_cls import (
 )
 from levistock.stock.stock_strategy_wencai import (
     stock_strategy_wencai,
+)
+from levistock.stock.stock_daban_his_kph import (
+    limit_up_his_kph,
+    limit_down_his_kph,
+    wind_vane_his_kph,
 )
 
 # ── 资讯 news ────────────────────────────────────────────
@@ -80,17 +95,23 @@ __all__ = [
     "market_wind_cls",
     "market_wind_stocks_cls",
     "market_mainline_cls",
+    "market_emotion_kph",
     # 板块
     "sector_em",
     "sector_stocks_em",
     "sector_stock_belong_em",
     "sector_industry_cls",
     "sector_ranking_kph",
-    "sector_ranking_stocks_kph",
+    "sector_stocks_his_kph",
+    "SECTOR_SELECTED",
+    "SECTOR_INDUSTRY",
+    "SECTOR_REGION",
     # 股票
     "stocks_all_em",
     "stocks_em",
     "stock_zt_pool_em",
+    "stock_dt_pool_em",
+    "stock_yesterday_zt_em",
     "stock_zt_pool_cls",
     "stock_changes_em",
     "stock_changes_detail_em",
@@ -98,6 +119,9 @@ __all__ = [
     "stock_timeline_cls",
     "stock_kline_cls",
     "stock_strategy_wencai",
+    "limit_up_his_kph",
+    "limit_down_his_kph",
+    "wind_vane_his_kph",
     # 资讯
     "news_telegraph_cls",
     # 工具

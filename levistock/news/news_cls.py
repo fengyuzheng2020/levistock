@@ -34,7 +34,7 @@ _TELEGRAPH_URL = "https://api3.cls.cn/v1/roll/get_roll_list"
 
 # 消息类型映射：用户传入直观名称 → 财联社接口参数
 _CATEGORY_MAP = {
-    None:          "",              # 全部
+    "all":          "",              # 全部
     "important":   "red",           # 加红重要消息
     "company":     "announcement",  # 公司公告
 }
@@ -78,7 +78,7 @@ def _parse_items(roll_data: list, day_start: int, day_end: int) -> tuple:
     return items, out_of_range
 
 
-def news_telegraph_cls(date: str = None, category: str = None) -> list:
+def news_telegraph_cls(date: str = None, category: str = "important") -> list:
     """
     获取财联社电报快讯（财联社）
 
@@ -91,8 +91,8 @@ def news_telegraph_cls(date: str = None, category: str = None) -> list:
         date (str): 查询日期，格式 "YYYY-MM-DD"，如 "2026-05-07"
                     默认为 None，查询今天的数据
 
-        category (str): 消息类型，默认 None（全部），支持以下类型：
-                        - None:          全部电报
+        category (str): 消息类型，默认 important（加红重要消息），支持以下类型：
+                        - "all":         全部电报
                         - "important":   加红重要消息
                         - "company":     公司公告
 
@@ -132,7 +132,7 @@ def news_telegraph_cls(date: str = None, category: str = None) -> list:
     if category not in _CATEGORY_MAP:
         raise ValueError(
             f"不支持的消息类型：{category}，"
-            f"支持的类型：{[k for k in _CATEGORY_MAP if k is not None]}"
+            f"支持的类型：{list(_CATEGORY_MAP.keys())}"
         )
 
     # 解析日期

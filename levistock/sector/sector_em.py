@@ -18,8 +18,11 @@ _ULIST_URL = "http://push2delay.eastmoney.com/api/qt/ulist.np/get"
 
 # 板块类型映射
 _SECTOR_TYPE_MAP = {
-    "industry": "m:90+t:2+f:!50",   # 行业板块
-    "concept":  "m:90+t:3+f:!50",   # 概念板块
+    "industry":    "m:90+t:2+f:!50",   # 全部行业板块
+    "concept":     "m:90+t:3+f:!50",   # 概念板块
+    "industry_l1": "m:90+s:2+f:!50",   # 一级行业
+    "industry_l2": "m:90+s:4+f:!50",   # 二级行业
+    "industry_l3": "m:90+s:8+f:!50",   # 三级行业
 }
 
 
