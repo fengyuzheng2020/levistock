@@ -16,7 +16,7 @@ def test_sector_stocks_his_kph():
     print(f"\n=== {plate_name}({plate_id}) 成分股 ({len(stocks)}只) ===")
     for s in stocks[:5]:
         print(f"{s['code']} {s['name']} 涨跌幅:{s['change_pct']}% "
-              f"换手:{s['turnover_rate']}% 龙虎榜:{s['rank_tag']}")
+              f"换手:{s['turnover_rate']}% 标签:{s['rank_tag']}")
 
 
 if __name__ == "__main__":
