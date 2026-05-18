@@ -124,6 +124,8 @@ def stock_zt_pool_em(date: str = None) -> list:
             "main_inflow":   item.get("fund", "-"),
             "open_times":    item.get("zbc", "-"),
             "sector":        str(item.get("hybk", "")),
+            "zt_days":       item.get("zttj", {}).get("days", "-"),
+            "zt_count":      item.get("zttj", {}).get("ct", "-"),
         })
 
     return result
