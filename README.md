@@ -35,75 +35,44 @@ lk.sector_em()
 
 ### 目录
 
-| 模块 | 接口 | 数据源 | 说明 |
-|------|------|--------|------|
-| 工具 | [is_trade_day](#is_trade_day) | 自有服务器 | 判断今天是否为交易日 |
-| 工具 | [get_trade_days](#get_trade_days) | 自有服务器 | 获取近N个交易日 |
-| 大盘 | [market_index_em](#market_index_em) | 东方财富 | 常用6个大盘指数 |
-| 大盘 | [market_index_all_em](#market_index_all_em) | 东方财富 | 全部大盘指数 |
-| 大盘 | [market_emotion_cls](#market_emotion_cls) | 财联社 | 市场情绪数据 |
-| 大盘 | [market_wind_cls](#market_wind_cls) | 财联社 | 今日风口板块 |
-| 大盘 | [market_wind_stocks_cls](#market_wind_stocks_cls) | 财联社 | 风口板块龙头股 |
-| 大盘 | [market_mainline_cls](#market_mainline_cls) | 财联社 | 今日主线机会 |
-| 大盘 | [market_emotion_kph](#market_emotion_kph) | 开盘红 | 市场情绪数据（实时/历史） |
-| 板块 | [sector_em](#sector_em) | 东方财富 | 行业/概念板块列表 |
-| 板块 | [sector_stocks_em](#sector_stocks_em) | 东方财富 | 板块成分股 |
-| 板块 | [sector_stock_belong_em](#sector_stock_belong_em) | 东方财富 | 股票所属板块 |
-| 板块 | [sector_industry_cls](#sector_industry_cls) | 财联社 | 行业板块实时行情 |
-| 板块 | [sector_ranking_kph](#sector_ranking_kph) | 开盘红 | 精选/行业/地区板块排行 |
-| 板块 | [sector_stocks_his_kph](#sector_stocks_his_kph) | 开盘红 | 历史板块成分股 |
-| 股票 | [stocks_all_em](#stocks_all_em) | 东方财富 | 全量A股实时行情 |
-| 股票 | [stocks_em](#stocks_em) | 东方财富 | 指定股票实时行情 |
-| 股票 | [stock_zt_pool_em](#stock_zt_pool_em) | 东方财富 | 涨停板股票池 |
-| 股票 | [stock_dt_pool_em](#stock_dt_pool_em) | 东方财富 | 跌停板股票池 |
-| 股票 | [stock_yesterday_zt_em](#stock_yesterday_zt_em) | 东方财富 | 昨日涨停今日表现 |
-| 股票 | [stock_changes_em](#stock_changes_em) | 东方财富 | 盘口异动列表 |
-| 股票 | [stock_changes_detail_em](#stock_changes_detail_em) | 东方财富 | 个股异动明细 |
-| 股票 | [stock_zt_pool_cls](#stock_zt_pool_cls) | 财联社 | 涨停池（含涨停原因） |
-| 股票 | [stock_hot_rank_ths](#stock_hot_rank_ths) | 同花顺 | 人气股排行榜 |
-| 股票 | [stock_timeline_cls](#stock_timeline_cls) | 财联社 | 个股分时数据 |
-| 股票 | [stock_kline_cls](#stock_kline_cls) | 财联社 | 个股K线数据 |
-| 股票 | [stock_strategy_wencai](#stock_strategy_wencai) | i问财 | 自然语言策略查询 |
-| 股票 | [limit_up_his_kph](#limit_up_his_kph) | 开盘红 | 历史涨停股列表 |
-| 股票 | [limit_down_his_kph](#limit_down_his_kph) | 开盘红 | 历史跌停股列表 |
-| 股票 | [wind_vane_his_kph](#wind_vane_his_kph) | 开盘红 | 历史风向标列表 |
-| 资讯 | [news_telegraph_cls](#news_telegraph_cls) | 财联社 | 电报快讯 |
-
----
-
-### 工具
-
-#### `is_trade_day`
-
-判断今天是否为A股交易日。
-
-```python
-if lk.is_trade_day():
-    print("今天是交易日")
-```
-
-| 返回值 | 说明 |
-|--------|------|
-| `bool` | True=交易日，False=非交易日 |
-
----
-
-#### `get_trade_days`
-
-获取近N个交易日列表。
-
-| 参数 | 说明 |
-|------|------|
-| n | 查询数量，默认10，范围1-30 |
-
-```python
-days = lk.get_trade_days()        # 近10个
-days = lk.get_trade_days(n=5)     # 近5个
-```
-
-| 返回值 | 说明 |
-|--------|------|
-| `list[str]` | 交易日列表，格式 `"YYYYMMDD"`，从近到远排列 |
+| 数据源 | 接口 | 说明 | 模块 |
+|--------|------|------|------|
+| 东方财富 | [market_index_em](#market_index_em) | 常用6个大盘指数 | 大盘 |
+| 东方财富 | [market_index_all_em](#market_index_all_em) | 全部大盘指数 | 大盘 |
+| 东方财富 | [sector_em](#sector_em) | 行业/概念板块列表 | 板块 |
+| 东方财富 | [sector_stocks_em](#sector_stocks_em) | 板块成分股 | 板块 |
+| 东方财富 | [sector_stock_belong_em](#sector_stock_belong_em) | 股票所属板块 | 板块 |
+| 东方财富 | [stocks_all_em](#stocks_all_em) | 全量A股实时行情 | 股票 |
+| 东方财富 | [stocks_em](#stocks_em) | 指定股票实时行情 | 股票 |
+| 东方财富 | [stock_zt_pool_em](#stock_zt_pool_em) | 涨停板股票池 | 股票 |
+| 东方财富 | [stock_dt_pool_em](#stock_dt_pool_em) | 跌停板股票池 | 股票 |
+| 东方财富 | [stock_yesterday_zt_em](#stock_yesterday_zt_em) | 昨日涨停今日表现 | 股票 |
+| 东方财富 | [stock_changes_em](#stock_changes_em) | 盘口异动列表 | 股票 |
+| 东方财富 | [stock_changes_detail_em](#stock_changes_detail_em) | 个股异动明细 | 股票 |
+| 财联社 | [market_emotion_cls](#market_emotion_cls) | 市场情绪数据 | 大盘 |
+| 财联社 | [market_wind_cls](#market_wind_cls) | 今日风口板块 | 大盘 |
+| 财联社 | [market_wind_stocks_cls](#market_wind_stocks_cls) | 风口板块龙头股 | 大盘 |
+| 财联社 | [market_mainline_cls](#market_mainline_cls) | 今日主线机会 | 大盘 |
+| 财联社 | [sector_industry_cls](#sector_industry_cls) | 行业板块实时行情 | 板块 |
+| 财联社 | [get_sector_heat](#get_sector_heat) | 板块热度排行 | 板块 |
+| 财联社 | [get_sector_rotation](#get_sector_rotation) | 板块轮动（近N日top10） | 板块 |
+| 财联社 | [stock_zt_pool_cls](#stock_zt_pool_cls) | 涨停池（含涨停原因） | 股票 |
+| 财联社 | [stock_timeline_cls](#stock_timeline_cls) | 个股分时数据 | 股票 |
+| 财联社 | [stock_kline_cls](#stock_kline_cls) | 个股K线数据 | 股票 |
+| 财联社 | [news_telegraph_cls](#news_telegraph_cls) | 电报快讯 | 资讯 |
+| 同花顺 | [stock_hot_rank_ths](#stock_hot_rank_ths) | 人气股排行榜 | 股票 |
+| 开盘红 | [market_emotion_kph](#market_emotion_kph) | 市场情绪数据（实时/历史） | 大盘 |
+| 开盘红 | [sector_ranking_kph](#sector_ranking_kph) | 精选/行业/地区板块排行 | 板块 |
+| 开盘红 | [sector_stocks_his_kph](#sector_stocks_his_kph) | 历史板块成分股 | 板块 |
+| 开盘红 | [limit_up_his_kph](#limit_up_his_kph) | 历史涨停股列表 | 股票 |
+| 开盘红 | [limit_down_his_kph](#limit_down_his_kph) | 历史跌停股列表 | 股票 |
+| 开盘红 | [wind_vane_his_kph](#wind_vane_his_kph) | 历史风向标列表 | 股票 |
+| 开盘红 | [get_zttt](#get_zttt) | 涨停天梯 | 复盘 |
+| 开盘红 | [get_pmsl](#get_pmsl) | 盘面梳理（板块事件流） | 复盘 |
+| 开盘红 | [get_his_limit_resumption](#get_his_limit_resumption) | 历史涨停复盘（含涨停原因） | 复盘 |
+| i问财 | [stock_strategy_wencai](#stock_strategy_wencai) | 自然语言策略查询 | 股票 |
+| 自有服务器 | [is_trade_day](#is_trade_day) | 判断今天是否为交易日 | 工具 |
+| 自有服务器 | [get_trade_days](#get_trade_days) | 获取近N个交易日 | 工具 |
 
 ---
 
@@ -356,7 +325,6 @@ for item in data:
 
 ```python
 data = lk.sector_industry_cls()
-sorted_data = sorted(data, key=lambda x: x["main_fund_diff"], reverse=True)
 ```
 
 | 字段 | 说明 |
@@ -370,6 +338,51 @@ sorted_data = sorted(data, key=lambda x: x["main_fund_diff"], reverse=True)
 | limit_up_num | 涨停家数 |
 | limit_down_num | 跌停家数 |
 | first_stock | 领涨股信息(dict) |
+
+---
+
+##### `get_sector_heat`
+
+获取板块热度排行（实时）。
+
+```python
+data = lk.get_sector_heat()
+for item in data[:10]:
+    print(f"{item['rank']}. {item['plate_name']} 热度:{item['cur_heat']:.1f}")
+```
+
+| 字段 | 说明 |
+|------|------|
+| plate_code | 板块代码 |
+| plate_name | 板块名称 |
+| rank | 当前热度排名 |
+| cur_heat | 当前热度值 |
+| rank_change | 排名变化（正=上升，负=下降） |
+| is_new | 是否新上榜（1=是，0=否） |
+
+---
+
+##### `get_sector_rotation`
+
+获取板块轮动，近N个交易日每日top10板块涨跌幅。
+
+| 参数 | 说明 |
+|------|------|
+| days | 查询天数，默认4 |
+
+```python
+data = lk.get_sector_rotation(days=4)
+for day in data:
+    print(f"{day['trade_date']}: {[p['plate_name'] for p in day['plates']]}")
+```
+
+| 字段 | 说明 |
+|------|------|
+| trade_date | 交易日期 |
+| plates | 当日top10板块列表 |
+| plates[].plate_code | 板块代码 |
+| plates[].plate_name | 板块名称 |
+| plates[].change | 当日涨跌幅(%) |
 
 ---
 
@@ -394,7 +407,6 @@ sorted_data = sorted(data, key=lambda x: x["main_fund_diff"], reverse=True)
 ```python
 data = lk.sector_ranking_kph(date="2026-05-14", zs_type=lk.SECTOR_SELECTED)
 data = lk.sector_ranking_kph(date="2026-05-13", zs_type=lk.SECTOR_INDUSTRY, fetch_all=True)
-data = lk.sector_ranking_kph(date="2026-05-14", zs_type=lk.SECTOR_REGION)
 ```
 
 | 字段 | 说明 |
@@ -416,12 +428,12 @@ data = lk.sector_ranking_kph(date="2026-05-14", zs_type=lk.SECTOR_REGION)
 
 ##### `sector_stocks_his_kph`
 
-获取历史板块成分股，精选/行业/地区通用，日期必须小于今天。
+获取历史板块成分股，日期必须小于今天。
 
 | 参数 | 说明 |
 |------|------|
 | plate_id | 板块ID，通过 `sector_ranking_kph()` 获取，必填 |
-| date | 交易日期，格式 `"YYYY-MM-DD"`，必填，必须小于今天 |
+| date | 交易日期，格式 `"YYYY-MM-DD"`，必须小于今天 |
 
 ```python
 plates = lk.sector_ranking_kph(date="2026-05-13", zs_type=lk.SECTOR_SELECTED)
@@ -739,26 +751,6 @@ for item in data[:5]:
 
 ---
 
-#### i问财
-
-##### `stock_strategy_wencai`
-
-自然语言股票策略查询。
-
-| 参数 | 说明 |
-|------|------|
-| query | 自然语言查询条件 |
-| page | 页码，默认1 |
-| limit | 每页条数，默认50 |
-
-```python
-data = lk.stock_strategy_wencai(query="连板3板以上")
-print(data["title"])
-print(data["result"])
-```
-
----
-
 #### 开盘红
 
 ##### `limit_up_his_kph`
@@ -772,7 +764,7 @@ print(data["result"])
 ```python
 data = lk.limit_up_his_kph(date="2026-05-13")
 for item in data:
-    print(f"{item['name']} 原因:{item['reason']} 题材:{item['themes']} 连板:{item['limit_count']}")
+    print(f"{item['name']} 原因:{item['reason']} 连板:{item['limit_count']}")
 ```
 
 | 字段 | 说明 |
@@ -807,7 +799,7 @@ for item in data:
 ```python
 data = lk.limit_down_his_kph(date="2026-05-13")
 for item in data:
-    print(f"{item['name']} 换手:{item['turnover_rate']}% 题材:{item['themes']}")
+    print(f"{item['name']} 换手:{item['turnover_rate']}%")
 ```
 
 | 字段 | 说明 |
@@ -829,7 +821,7 @@ for item in data:
 
 ##### `wind_vane_his_kph`
 
-获取历史风向标列表，日期必须小于今天，字段同 `limit_up_his_kph()`。
+获取历史风向标列表，字段同 `limit_up_his_kph()`。
 
 | 参数 | 说明 |
 |------|------|
@@ -837,9 +829,115 @@ for item in data:
 
 ```python
 data = lk.wind_vane_his_kph(date="2026-05-13")
-for item in data:
-    print(f"{item['name']} 换手:{item['turnover_rate']}% 题材:{item['themes']}")
 ```
+
+---
+
+### 复盘 fupanla
+
+#### 开盘红
+
+##### `get_zttt`
+
+涨停天梯，不传日期默认今天，支持历史日期查询。
+
+| 参数 | 说明 |
+|------|------|
+| date | 交易日期，格式 `"YYYY-MM-DD"`，默认今天 |
+
+```python
+data = lk.get_zttt()
+data = lk.get_zttt(date="2026-05-21")
+stock_list = data.get("StockList", [])
+for s in stock_list:
+    print(f"{s[1]} {s[2]}连板 板块:{s[5]}")
+```
+
+| StockList索引 | 说明 |
+|---------------|------|
+| [0] | 股票代码 |
+| [1] | 股票名称 |
+| [2] | 连板数 |
+| [3] | 涨停时间戳(秒) |
+| [4] | 所属板块代码 |
+| [5] | 所属板块名称 |
+| [6] | 是否大单一字（1=是） |
+| [7] | 是否有人气（1=是） |
+| [8] | 板块涨停股数量 |
+| [9] | 个股成交额(元) |
+| [10] | 板块成交额(元) |
+
+---
+
+##### `get_pmsl`
+
+盘面梳理，板块事件流，不传日期默认今天，支持历史日期查询。
+
+| 参数 | 说明 |
+|------|------|
+| date | 交易日期，格式 `"YYYY-MM-DD"`，默认今天 |
+| st | 返回条数，默认30 |
+| index | 分页起始，默认0 |
+
+```python
+data = lk.get_pmsl()
+data = lk.get_pmsl(date="2026-05-21")
+for item in data.get("List", []):
+    print(f"[{item['TagName']}] {item['Detail']}")
+```
+
+| 字段 | 说明 |
+|------|------|
+| TimeMin | 事件时间戳(秒) |
+| TagID | 事件类型ID |
+| TagName | 事件类型（大单一字/直线拉升/权重拉升/趋势新高/人气股杀跌/...） |
+| TagShuXing | 事件属性（2=正面，0=负面，1=中性） |
+| ZSCode | 板块代码 |
+| ZSName | 板块名称 |
+| Detail | 事件描述文字 |
+| StockList | 相关股票列表 [[代码, 名称], ...] |
+
+---
+
+##### `get_his_limit_resumption`
+
+历史涨停复盘，含涨停原因详细文字，支持历史日期查询。
+
+| 参数 | 说明 |
+|------|------|
+| date | 交易日期，格式 `"YYYY-MM-DD"`，默认今天 |
+| st | 返回条数，默认100 |
+| index | 分页起始，默认0 |
+
+```python
+data = lk.get_his_limit_resumption(date="2026-05-21")
+nums = data.get("nums", {})
+print(f"涨停:{nums['ZT']} 跌停:{nums['DT']} 占比:{nums['ZBL']}%")
+for plate in data.get("list", []):
+    print(f"\n板块: {plate['ZSName']}")
+    for s in plate.get("StockList", []):
+        print(f"  {s[1]} {s[9]} 原因:{s[16]}")
+        print(f"  {s[17][:60]}...")
+```
+
+| nums字段 | 说明 |
+|----------|------|
+| ZT | 涨停总数 |
+| DT | 跌停总数 |
+| ZBL | 涨停占比(%) |
+| SZJS | 上涨家数 |
+| XDJS | 下跌家数 |
+| yestRase | 昨日涨跌幅 |
+
+| StockList索引 | 说明 |
+|---------------|------|
+| [0] | 股票代码 |
+| [1] | 股票名称 |
+| [9] | 连板描述（首板/2连板/...） |
+| [10] | 连板数 |
+| [11] | 所属概念 |
+| [16] | 涨停原因简短标签 |
+| [17] | 涨停原因详细文字 |
 
 ---
 
@@ -875,6 +973,44 @@ for item in data:
 | title | 标题 |
 | content | 正文内容 |
 | time | 发布时间，格式 `"YYYY-MM-DD HH:MM:SS"` |
+
+---
+
+### 工具 utils
+
+#### 自有服务器
+
+##### `is_trade_day`
+
+判断今天是否为A股交易日。
+
+```python
+if lk.is_trade_day():
+    print("今天是交易日")
+```
+
+| 返回值 | 说明 |
+|--------|------|
+| `bool` | True=交易日，False=非交易日 |
+
+---
+
+##### `get_trade_days`
+
+获取近N个交易日列表。
+
+| 参数 | 说明 |
+|------|------|
+| n | 查询数量，默认10，范围1-30 |
+
+```python
+days = lk.get_trade_days()
+days = lk.get_trade_days(n=5)
+```
+
+| 返回值 | 说明 |
+|--------|------|
+| `list[str]` | 交易日列表，格式 `"YYYYMMDD"`，从近到远排列 |
 
 ---
 

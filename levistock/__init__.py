@@ -31,6 +31,12 @@ from levistock.sector.sector_em import (
 from levistock.sector.sector_cls import (
     sector_industry_cls,
 )
+from levistock.sector.sector_heat_cls import (
+    get_sector_heat,
+)
+from levistock.sector.sector_rotation_cls import (
+    get_sector_rotation,
+)
 from levistock.sector.sector_ranking_kph import (
     sector_ranking_kph,
     SECTOR_SELECTED,
@@ -74,6 +80,13 @@ from levistock.stock.stock_daban_his_kph import (
     wind_vane_his_kph,
 )
 
+# ── 复盘 fupanla ─────────────────────────────────────────
+from levistock.stock.stock_fupanla_kph import (
+    get_zttt,
+    get_pmsl,
+    get_his_limit_resumption,
+)
+
 # ── 资讯 news ────────────────────────────────────────────
 from levistock.news.news_cls import (
     news_telegraph_cls,
@@ -102,6 +115,8 @@ __all__ = [
     "sector_stocks_em",
     "sector_stock_belong_em",
     "sector_industry_cls",
+    "get_sector_heat",
+    "get_sector_rotation",
     "sector_ranking_kph",
     "sector_stocks_his_kph",
     "SECTOR_SELECTED",
@@ -123,6 +138,10 @@ __all__ = [
     "limit_up_his_kph",
     "limit_down_his_kph",
     "wind_vane_his_kph",
+    # 复盘
+    "get_zttt",
+    "get_pmsl",
+    "get_his_limit_resumption",
     # 资讯
     "news_telegraph_cls",
     # 工具
