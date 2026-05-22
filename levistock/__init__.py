@@ -33,6 +33,7 @@ from levistock.sector.sector_cls import (
 )
 from levistock.sector.sector_heat_cls import (
     get_sector_heat,
+    get_sector_popular_stocks,
 )
 from levistock.sector.sector_rotation_cls import (
     get_sector_rotation,
@@ -116,6 +117,7 @@ __all__ = [
     "sector_stock_belong_em",
     "sector_industry_cls",
     "get_sector_heat",
+    "get_sector_popular_stocks",
     "get_sector_rotation",
     "sector_ranking_kph",
     "sector_stocks_his_kph",
