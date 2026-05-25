@@ -1,3 +1,5 @@
+** A股或量化交流（纸✈️）：https://t.me/+KkSvBB_Utaw5ZmJl **
+
 # levistock
 
 A股市场数据 SDK，封装东方财富、财联社、同花顺、开盘红、i问财常用接口。
