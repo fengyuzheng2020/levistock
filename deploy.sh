@@ -94,6 +94,10 @@ start_service() {
     docker run -d \
         --name $CONTAINER_NAME \
         --restart unless-stopped \
+        --dns 100.100.2.136 \
+        --dns 100.100.2.138 \
+        --dns 223.5.5.5 \
+        --dns 223.6.6.6 \
         -v $(pwd)/config/config.py:/app/levistock/news/config.py:ro \
         -e TZ=Asia/Shanghai \
         -e PYTHONUNBUFFERED=1 \
