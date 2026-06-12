@@ -14,5 +14,8 @@ RUN pip install -r requirements.txt
 # 再复制项目代码
 COPY . .
 
+# 安装项目为可编辑包，确保模块可以正确导入
+RUN pip install -e .
+
 
 CMD ["python", "levistock/news/unified_service.py"]
