@@ -67,7 +67,15 @@ setup_config() {
 # 构建 Docker 镜像
 build_image() {
     print_info "构建 Docker 镜像..."
-    docker build -t ${PROJECT_NAME}:latest .
+    
+    # 检查是否使用快速构建
+    if [ "$1" == "fast" ]; then
+        print_info "使用快速构建模式（国内镜像源）..."
+        docker build -f Dockerfile.fast -t ${PROJECT_NAME}:latest .
+    else
+        docker build -t ${PROJECT_NAME}:latest .
+    fi
+    
     print_info "镜像构建完成"
 }
 
@@ -178,7 +186,7 @@ reload_config() {
 
 # 显示帮助信息
 show_help() {
-    echo "用法: $0 <命令>"
+    echo "用法: $0 <命令> [选项]"
     echo ""
     echo "命令:"
     echo "  start       启动服务"
@@ -191,8 +199,12 @@ show_help() {
     echo "  cleanup     清理所有资源"
     echo "  help        显示此帮助信息"
     echo ""
+    echo "选项:"
+    echo "  fast        使用快速构建模式（国内镜像源）"
+    echo ""
     echo "示例:"
     echo "  $0 start          # 启动服务"
+    echo "  $0 start fast     # 快速构建并启动（推荐国内用户）"
     echo "  $0 logs           # 查看实时日志"
     echo "  $0 reload         # 修改配置后重新加载"
 }
@@ -204,7 +216,7 @@ main() {
     case "${1:-start}" in
         start)
             setup_config
-            build_image
+            build_image "${2:-}"
             start_service
             ;;
         stop)
@@ -215,7 +227,7 @@ main() {
             ;;
         rebuild)
             setup_config
-            build_image
+            build_image "${2:-}"
             start_service
             ;;
         logs)
