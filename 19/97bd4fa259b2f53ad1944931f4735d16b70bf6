@@ -1,0 +1,12 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "1997bd4fa259b2f53ad1944931f4735d16b70bf6",
+  "prompts": {},
+  "humans": {
+    "h_5799d73e60debe": {
+      "author": "fengyuzheng <@fengyuzheng>"
+    }
+  }
+}
