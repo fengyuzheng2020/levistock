@@ -15,7 +15,7 @@ RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debia
     sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list 2>/dev/null || true
 
 # 复制依赖文件并安装（利用 Docker 缓存层）
-COPY pyproject.toml setup.cfg* README.md ./
+COPY pyproject.toml .
 COPY levistock/__init__.py ./levistock/__init__.py
 
 # 安装 Python 依赖（这层会被缓存，除非依赖文件变化）
