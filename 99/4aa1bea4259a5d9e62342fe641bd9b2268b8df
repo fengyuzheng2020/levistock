@@ -1,0 +1,24 @@
+levistock/news/config_example.py
+  s_e6d4333abd628d::t_90901978ab4bb6 15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "994aa1bea4259a5d9e62342fe641bd9b2268b8df",
+  "prompts": {},
+  "humans": {
+    "h_5799d73e60debe": {
+      "author": "fengyuzheng <@fengyuzheng>"
+    }
+  },
+  "sessions": {
+    "s_e6d4333abd628d": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1781236576000",
+        "model": "unknown"
+      },
+      "human_author": "fengyuzheng <@fengyuzheng>"
+    }
+  }
+}
