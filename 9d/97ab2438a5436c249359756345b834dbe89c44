@@ -1,0 +1,19 @@
+Dockerfile
+  s_e6d4333abd628d::t_da4f35fd1547e7 5-7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "9d97ab2438a5436c249359756345b834dbe89c44",
+  "prompts": {},
+  "sessions": {
+    "s_e6d4333abd628d": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1781236576000",
+        "model": "unknown"
+      },
+      "human_author": "fengyuzheng <@fengyuzheng>"
+    }
+  }
+}
