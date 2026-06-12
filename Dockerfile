@@ -6,12 +6,18 @@ WORKDIR /app
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip config set install.trusted-host pypi.tuna.tsinghua.edu.cn
 
-COPY . .
-
 # 设置环境变量优化 pip 安装
 ENV PIP_NO_CACHE_DIR=1 \
     PIP_DISABLE_PIP_VERSION_CHECK=1
 
+# 先复制依赖文件并安装,利用 Docker 缓存层
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# 再复制项目代码
+COPY . .
+
+# 安装项目本身
 RUN pip install -e .
 
 CMD ["python", "levistock/news/unified_service.py"]
