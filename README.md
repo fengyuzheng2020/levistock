@@ -63,6 +63,8 @@ lk.sector_em()
 | 财联社 | [stock_kline_cls](#stock_kline_cls) | 个股K线数据 | 股票 |
 | 财联社 | [news_telegraph_cls](#news_telegraph_cls) | 电报快讯 | 资讯 |
 | 第一财经 | [news_brief_yicai](#news_brief_yicai) | 第一财经快讯 | 资讯 |
+| 新浪财经 | [news_brief_sina](#news_brief_sina) | 新浪财经快讯 | 资讯 |
+| 东方财富 | [news_brief_em](#news_brief_em) | 东方财富快讯 | 资讯 |
 | 同花顺 | [stock_hot_rank_ths](#stock_hot_rank_ths) | 人气股排行榜 | 股票 |
 | 开盘红 | [market_emotion_kph](#market_emotion_kph) | 市场情绪数据（实时/历史） | 大盘 |
 | 开盘红 | [sector_ranking_kph](#sector_ranking_kph) | 精选/行业/地区板块排行 | 板块 |
@@ -1007,6 +1009,64 @@ for item in data:
 | time | 发布时间，格式 `"YYYY-MM-DD HH:MM:SS"` |
 | share_url | 分享链接 |
 | important | 是否重要消息（True/False） |
+
+---
+
+#### 新浪财经
+
+##### `news_brief_sina`
+
+获取新浪财经快讯。
+
+| 参数 | 说明 |
+|------|------|
+| limit | 获取数量，默认20条 |
+
+```python
+data = lk.news_brief_sina()
+data = lk.news_brief_sina(limit=5)
+for item in data:
+    print(f"{item['time']} | {item['title']}")
+    print(f"  来源: {item['source']}")
+    print(f"  阅读: {item['view_num']}")
+```
+
+| 字段 | 说明 |
+|------|------|
+| id | 快讯ID |
+| title | 标题 |
+| content | 正文内容 |
+| time | 发布时间，格式 `"YYYY-MM-DD HH:MM:SS"` |
+| source | 来源分类 |
+| view_num | 阅读量 |
+
+---
+
+##### `news_brief_em`
+
+获取东方财富快讯。
+
+| 参数 | 说明 |
+|------|------|
+| limit | 获取数量，默认20条 |
+
+```python
+data = lk.news_brief_em()
+data = lk.news_brief_em(limit=5)
+for item in data:
+    print(f"{item['time']} | {item['title']}")
+    if item['stock_list']:
+        stocks = ", ".join([s.get('name', '') for s in item['stock_list'][:3]])
+        print(f"  相关股票: {stocks}")
+```
+
+| 字段 | 说明 |
+|------|------|
+| code | 快讯ID |
+| title | 标题 |
+| content | 正文内容 |
+| time | 发布时间，格式 `"YYYY-MM-DD HH:MM:SS"` |
+| stock_list | 相关股票列表 |
 
 ---
 

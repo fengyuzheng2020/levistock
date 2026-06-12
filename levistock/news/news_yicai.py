@@ -98,8 +98,16 @@ def news_brief_yicai(limit: int = 20) -> list:
         try:
             data = _fetch_brief_list(page=page, page_size=page_size)
             
-            # 解析响应数据
-            brief_list = data.get("data", [])
+            # 解析响应数据 - API 可能直接返回列表或包含在字典中
+            if isinstance(data, list):
+                # 直接返回列表
+                brief_list = data
+            elif isinstance(data, dict):
+                # 字典格式，尝试不同的键
+                brief_list = data.get("data", []) or data.get("result", []) or data.get("list", [])
+            else:
+                print(f"[WARNING] 未知的数据类型: {type(data)}")
+                break
             
             if not brief_list:
                 break
@@ -112,6 +120,8 @@ def news_brief_yicai(limit: int = 20) -> list:
                 
         except Exception as e:
             print(f"[ERROR] 获取第{page}页数据失败: {e}")
+            import traceback
+            traceback.print_exc()
             break
     
     # 截取指定数量的数据

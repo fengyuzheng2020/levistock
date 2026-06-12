@@ -95,6 +95,12 @@ from levistock.news.news_cls import (
 from levistock.news.news_yicai import (
     news_brief_yicai,
 )
+from levistock.news.news_sina import (
+    news_brief_sina,
+)
+from levistock.news.news_em import (
+    news_brief_em,
+)
 
 # ── 工具 utils ───────────────────────────────────────────
 from levistock.utils.trade_day import (
@@ -150,6 +156,8 @@ __all__ = [
     # 资讯
     "news_telegraph_cls",
     "news_brief_yicai",
+    "news_brief_sina",
+    "news_brief_em",
     # 工具
     "is_trade_day",
     "get_trade_days",

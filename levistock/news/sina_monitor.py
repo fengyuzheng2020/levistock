@@ -1,21 +1,19 @@
 """
-第一财经快讯 - 飞书机器人推送服务
+新浪财经快讯 - 飞书机器人推送服务
 
 功能说明:
-- 实时监控第一财经快讯
+- 实时监控新浪财经快讯
 - 检测到新消息时自动推送到飞书机器人
 - 支持自定义推送间隔和过滤规则
 """
 
 import time
-import requests
-import json
 import datetime
 from typing import Optional, Callable
 
 
-class YicaiBriefMonitor:
-    """第一财经快讯监控器"""
+class SinaBriefMonitor:
+    """新浪财经快讯监控器"""
     
     def __init__(
         self,
@@ -47,12 +45,12 @@ class YicaiBriefMonitor:
         Returns:
             最新消息列表
         """
-        from levistock.news.news_yicai import news_brief_yicai
+        from levistock.news.news_sina import news_brief_sina
         
         try:
             # 获取最新的快讯
-            print(f"[DEBUG] 正在获取最新 {limit} 条快讯...")
-            data = news_brief_yicai(limit=limit)
+            print(f"[DEBUG] 正在获取最新 {limit} 条新浪财经快讯...")
+            data = news_brief_sina(limit=limit)
             
             if not data:
                 print(f"[WARNING] 未获取到数据")
@@ -61,7 +59,7 @@ class YicaiBriefMonitor:
             print(f"[DEBUG] 成功获取 {len(data)} 条数据")
             return data
         except Exception as e:
-            print(f"[ERROR] 获取第一财经快讯失败: {e}")
+            print(f"[ERROR] 获取新浪财经快讯失败: {e}")
             import traceback
             traceback.print_exc()
             return []
@@ -79,43 +77,36 @@ class YicaiBriefMonitor:
         title = news_item.get("title", "无标题")
         content = news_item.get("content", "")
         time_str = news_item.get("time", "")
-        share_url = news_item.get("share_url", "")
-        important = news_item.get("important", False)
-        
-        # 添加重要标记
-        prefix = "🔴 " if important else ""
+        source = news_item.get("source", "未知")
+        view_num = news_item.get("view_num", "")
         
         # 构建富文本内容
         content_list = [
             [{"tag": "text", "text": f"⏰ 时间: {time_str}"}],
-            [{"tag": "text", "text": f"{prefix}📰 标题: {title}"}],
+            [{"tag": "text", "text": f"📰 标题: {title}"}],
         ]
         
         if content:
-            # 去除HTML标签
-            clean_content = self._remove_html_tags(content)
             # 内容过长时截断
-            if len(clean_content) > 500:
-                clean_content = clean_content[:500] + "..."
-            content_list.append([{"tag": "text", "text": f"📝 内容: {clean_content}"}])
+            if len(content) > 500:
+                content = content[:500] + "..."
+            content_list.append([{"tag": "text", "text": f"📝 内容: {content}"}])
         
-        if share_url:
-            content_list.append([{"tag": "a", "text": "🔗 查看详情", "href": share_url}])
+        # 添加来源和阅读量
+        meta_parts = []
+        if source:
+            meta_parts.append(f"来源: {source}")
+        if view_num:
+            meta_parts.append(view_num)
+        
+        if meta_parts:
+            content_list.append([{"tag": "text", "text": f"ℹ️  {' | '.join(meta_parts)}"}])
         
         # 添加来源标识
-        content_list.append([{"tag": "text", "text": "🔗 来源: 第一财经"}])
+        content_list.append([{"tag": "text", "text": "🔗 来源: 新浪财经"}])
         content_list.append([{"tag": "text", "text": "---"}])
         
         return title, content_list
-    
-    def _remove_html_tags(self, text: str) -> str:
-        """去除HTML标签"""
-        import re
-        # 去除HTML标签
-        clean_text = re.sub(r'<[^>]+>', '', text)
-        # 去除多余空白
-        clean_text = ' '.join(clean_text.split())
-        return clean_text
     
     def _send_to_feishu(self, news_item: dict) -> bool:
         """
@@ -180,7 +171,7 @@ class YicaiBriefMonitor:
         """启动监控服务"""
         self.running = True
         print("=" * 60)
-        print("第一财经快讯 - 飞书推送服务")
+        print("新浪财经快讯 - 飞书推送服务")
         print("=" * 60)
         print(f"轮询间隔: {self.interval}秒")
         print(f"启动时间: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -274,7 +265,7 @@ if __name__ == "__main__":
         print(f"启用关键词过滤: {KEYWORDS}")
     
     # 创建监控器
-    monitor = YicaiBriefMonitor(
+    monitor = SinaBriefMonitor(
         feishu_bot=bot,
         interval=POLL_INTERVAL,
         filter_func=filter_func
