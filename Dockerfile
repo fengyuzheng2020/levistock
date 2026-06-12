@@ -2,9 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# 配置 pip 使用国内镜像源
-RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
-    pip config set install.trusted-host pypi.tuna.tsinghua.edu.cn
+# 阿里云国内pip源，加速下载依赖（关键，国外源阿里云很慢）
+ENV PIP_INDEX_URL=https://mirrors.aliyun.com/pypi/simple
+ENV PIP_TRUSTED_HOST=mirrors.aliyun.com
 
 # 设置环境变量优化 pip 安装
 ENV PIP_NO_CACHE_DIR=1 \
