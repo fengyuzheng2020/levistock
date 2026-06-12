@@ -4,7 +4,8 @@ WORKDIR /app
 
 # 设置环境变量优化 pip 安装
 ENV PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
 
 # 先复制依赖文件并安装,利用 Docker 缓存层
 COPY requirements.txt .
