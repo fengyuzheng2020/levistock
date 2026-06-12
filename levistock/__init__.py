@@ -92,6 +92,9 @@ from levistock.stock.stock_fupanla_kph import (
 from levistock.news.news_cls import (
     news_telegraph_cls,
 )
+from levistock.news.news_yicai import (
+    news_brief_yicai,
+)
 
 # ── 工具 utils ───────────────────────────────────────────
 from levistock.utils.trade_day import (
@@ -146,6 +149,7 @@ __all__ = [
     "get_his_limit_resumption",
     # 资讯
     "news_telegraph_cls",
+    "news_brief_yicai",
     # 工具
     "is_trade_day",
     "get_trade_days",

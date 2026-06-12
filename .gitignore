@@ -14,3 +14,9 @@ build/
 
 # 本地缓存
 .astock_cache/
+
+# 飞书服务配置（包含敏感信息）
+levistock/news/config.py
+levistock/news/*.pid
+levistock/news/*.log
+levistock/news/market_data_bot.log
