@@ -24,11 +24,13 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def load_config():
     """加载配置文件"""
-    config_path = os.path.join(os.path.dirname(__file__), "config.py")
+    # 获取项目根目录（levistock 的父目录）
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    config_path = os.path.join(project_root, "config", "config.py")
     
     if not os.path.exists(config_path):
         print(f"[ERROR] 配置文件不存在: {config_path}")
-        print(f"[INFO] 请复制 config_example.py 为 config.py 并配置")
+        print(f"[INFO] 请复制 config_example.py 为 config/config.py 并配置")
         sys.exit(1)
     
     # 动态导入配置

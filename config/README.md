@@ -11,13 +11,12 @@ config/
 
 ## 🔧 配置步骤
 
-### 1. 首次使用
+### 1. 创建配置文件
 
 ```bash
-# 从示例文件复制
-cp ../levistock/news/config_example.py config.py
-
-# 编辑配置
+# 如果 config.py 不存在，需要手动创建
+cp ../levistock/news/unified_service.py /tmp/check_config.py
+# 或者直接编辑 config.py，参考下面的配置项
 vim config.py
 ```
 
@@ -68,6 +67,6 @@ docker restart levistock-service
 
 ## 📖 更多配置项
 
-查看完整配置示例：`../levistock/news/config_example.py`
+查看 `config/config.py` 文件中的完整配置项和注释说明。
 
 或参考文档：`../DOCKER_DEPLOY.md`

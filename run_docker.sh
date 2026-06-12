@@ -35,13 +35,9 @@ if [ ! -d "config" ]; then
 fi
 
 if [ ! -f "config/config.py" ]; then
-    if [ -f "levistock/news/config_example.py" ]; then
-        cp levistock/news/config_example.py config/config.py
-        print_warn "已复制示例配置，请编辑 config/config.py"
-    else
-        print_error "找不到示例配置文件"
-        exit 1
-    fi
+    print_error "配置文件不存在: config/config.py"
+    print_warn "请根据项目文档创建配置文件"
+    exit 1
 fi
 
 # 停止并删除旧容器
