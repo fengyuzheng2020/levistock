@@ -17,7 +17,5 @@ RUN pip install -r requirements.txt
 # 再复制项目代码
 COPY . .
 
-# 安装项目本身
-RUN pip install -e .
 
 CMD ["python", "levistock/news/unified_service.py"]
