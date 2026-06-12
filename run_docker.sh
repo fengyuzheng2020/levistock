@@ -53,12 +53,7 @@ fi
 
 # 构建镜像
 print_info "构建 Docker 镜像..."
-docker build \
-    --dns 100.100.2.136 \
-    --dns 100.100.2.138 \
-    --dns 223.5.5.5 \
-    --dns 223.6.6.6 \
-    -t $IMAGE_NAME .
+docker build -t $IMAGE_NAME .
 
 # 启动容器
 print_info "启动容器..."
